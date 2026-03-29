@@ -1,4 +1,24 @@
 document.getElementById('generate-btn').addEventListener('click', generateLottoNumbers);
+const themeToggle = document.getElementById('theme-toggle');
+
+// Theme logic
+const currentTheme = localStorage.getItem('theme');
+if (currentTheme === 'dark') {
+    document.body.classList.add('dark-mode');
+    themeToggle.textContent = '☀️';
+}
+
+themeToggle.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+    let theme = 'light';
+    if (document.body.classList.contains('dark-mode')) {
+        theme = 'dark';
+        themeToggle.textContent = '☀️';
+    } else {
+        themeToggle.textContent = '🌙';
+    }
+    localStorage.setItem('theme', theme);
+});
 
 function generateLottoNumbers() {
     const numbers = [];
@@ -9,7 +29,6 @@ function generateLottoNumbers() {
         }
     }
 
-    // Sort numbers in ascending order
     numbers.sort((a, b) => a - b);
 
     const ballElements = document.querySelectorAll('.ball');
@@ -17,10 +36,8 @@ function generateLottoNumbers() {
         const num = numbers[index];
         ball.textContent = num;
         
-        // Remove existing color classes
         ball.classList.remove('ball-yellow', 'ball-blue', 'ball-red', 'ball-gray', 'ball-green');
         
-        // Add color class based on number
         if (num <= 10) {
             ball.classList.add('ball-yellow');
         } else if (num <= 20) {
