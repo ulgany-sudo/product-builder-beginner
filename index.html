@@ -3,8 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>로또 번호 생성기</title>
+  <title>로또 번호 생성기 & 동물상 테스트</title>
   <link href="style.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
 </head>
 <body>
   <div class="container">
@@ -19,6 +21,20 @@
       <div class="ball">?</div>
     </div>
     <button id="generate-btn">번호 생성하기</button>
+  </div>
+
+  <div class="container animal-test-section">
+    <h1>동물상 테스트</h1>
+    <p>내 얼굴은 강아지상? 고양이상?</p>
+    <div class="upload-area" id="upload-area" onclick="document.getElementById('image-upload').click()">
+      <p id="upload-label">여기를 눌러 사진을 업로드하세요</p>
+      <img id="preview-img" style="display: none; width: 100%; border-radius: 8px;">
+    </div>
+    <input type="file" id="image-upload" accept="image/*" style="display: none;">
+    <div id="result-container" style="margin-top: 1.5rem; display: none;">
+      <h2 id="prediction-label">분석 결과: </h2>
+      <div id="label-container" class="label-container"></div>
+    </div>
   </div>
 
   <div class="container contact-section">

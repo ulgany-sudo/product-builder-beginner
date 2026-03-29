@@ -44,10 +44,70 @@ body {
   margin-bottom: 2rem;
 }
 
-.contact-section h2 {
+.contact-section h2, .animal-test-section h1 {
   color: var(--text-color);
   margin-bottom: 1.5rem;
 }
+
+.animal-test-section p {
+  color: var(--text-color);
+  margin-bottom: 1.5rem;
+  opacity: 0.8;
+}
+
+.upload-area {
+  border: 2px dashed var(--btn-bg);
+  border-radius: 12px;
+  padding: 2rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  margin-bottom: 1rem;
+}
+
+.upload-area:hover {
+  background-color: var(--shadow-color);
+}
+
+.upload-area p {
+  margin: 0;
+  font-weight: bold;
+}
+
+.label-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  text-align: left;
+}
+
+.result-bar-wrapper {
+  width: 100%;
+  background-color: var(--ball-bg);
+  border-radius: 10px;
+  height: 25px;
+  position: relative;
+  overflow: hidden;
+}
+
+.result-bar {
+  height: 100%;
+  border-radius: 10px;
+  transition: width 0.5s ease;
+}
+
+.result-text {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  line-height: 25px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: var(--text-color);
+  z-index: 1;
+}
+
+.bar-dog { background-color: #fbc400; }
+.bar-cat { background-color: #69c8f2; }
 
 .contact-form {
   text-align: left;
