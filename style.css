@@ -1,1 +1,74 @@
-/* Add styles here */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f4f9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.container {
+  text-align: center;
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+h1 {
+  color: #333;
+  margin-bottom: 2rem;
+}
+
+.numbers-container {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.ball {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #eee;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: #333;
+  box-shadow: inset -2px -2px 5px rgba(0,0,0,0.2), 2px 2px 5px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.ball:hover {
+  transform: scale(1.1);
+}
+
+#generate-btn {
+  padding: 10px 25px;
+  font-size: 1.1rem;
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+#generate-btn:hover {
+  background-color: #357abd;
+}
+
+#generate-btn:active {
+  transform: translateY(2px);
+}
+
+/* Ball colors based on number ranges */
+.ball-yellow { background-color: #fbc400; color: #fff; } /* 1-10 */
+.ball-blue { background-color: #69c8f2; color: #fff; }   /* 11-20 */
+.ball-red { background-color: #ff7272; color: #fff; }    /* 21-30 */
+.ball-gray { background-color: #aaaaaa; color: #fff; }   /* 31-40 */
+.ball-green { background-color: #b0d840; color: #fff; }  /* 41-45 */
