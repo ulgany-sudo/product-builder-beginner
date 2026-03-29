@@ -22,9 +22,11 @@ body {
   font-family: 'Arial', sans-serif;
   background-color: var(--bg-color);
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
+  padding: 2rem 0;
   margin: 0;
   transition: background-color 0.3s, color 0.3s;
 }
@@ -37,6 +39,63 @@ body {
   box-shadow: 0 4px 6px var(--shadow-color);
   position: relative;
   transition: background-color 0.3s, box-shadow 0.3s;
+  width: 90%;
+  max-width: 500px;
+  margin-bottom: 2rem;
+}
+
+.contact-section h2 {
+  color: var(--text-color);
+  margin-bottom: 1.5rem;
+}
+
+.contact-form {
+  text-align: left;
+}
+
+.form-group {
+  margin-bottom: 1.2rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--text-color);
+  font-size: 0.9rem;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  box-sizing: border-box;
+  font-family: inherit;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--btn-bg);
+}
+
+#submit-btn {
+  width: 100%;
+  padding: 12px;
+  font-size: 1rem;
+  background-color: var(--btn-bg);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+#submit-btn:hover {
+  background-color: var(--btn-hover);
 }
 
 h1 {
