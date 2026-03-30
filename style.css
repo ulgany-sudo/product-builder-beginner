@@ -6,6 +6,7 @@
   --btn-bg: #4a90e2;
   --btn-hover: #357abd;
   --accent-color: #ff7272;
+  --input-border: #dddddd;
 }
 
 body.dark-mode {
@@ -16,6 +17,7 @@ body.dark-mode {
   --btn-bg: #357abd;
   --btn-hover: #4a90e2;
   --accent-color: #ff8e8e;
+  --input-border: #444444;
 }
 
 body {
@@ -52,7 +54,31 @@ h1 {
 .main-section p {
   color: var(--text-color);
   opacity: 0.8;
+  margin-bottom: 1.5rem;
+}
+
+.region-select-container {
+  display: flex;
+  gap: 10px;
   margin-bottom: 2rem;
+  justify-content: center;
+}
+
+.region-select-container select {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid var(--input-border);
+  background-color: var(--container-bg);
+  color: var(--text-color);
+  font-family: inherit;
+  flex: 1;
+  cursor: pointer;
+  outline: none;
+}
+
+.region-select-container select:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 .theme-btn {
@@ -143,14 +169,20 @@ h1 {
   cursor: pointer;
   transition: background-color 0.2s, transform 0.1s;
   font-weight: bold;
+  width: 100%;
 }
 
-#recommend-btn:hover {
+#recommend-btn:hover:not(:disabled) {
   background-color: var(--btn-hover);
 }
 
-#recommend-btn:active {
+#recommend-btn:active:not(:disabled) {
   transform: translateY(2px);
+}
+
+#recommend-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 .contact-section h2 {
@@ -177,7 +209,7 @@ h1 {
 .form-group textarea {
   width: 100%;
   padding: 10px;
-  border: 1px solid #ddd;
+  border: 1px solid var(--input-border);
   border-radius: 6px;
   background-color: var(--bg-color);
   color: var(--text-color);

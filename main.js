@@ -1,6 +1,19 @@
+const regions = {
+    "서울": ["강남구", "서초구", "송파구", "마포구", "성동구", "영등포구", "종로구", "중구", "강북구"],
+    "경기": ["수원시", "성남시", "고양시", "용인시", "안양시"],
+    "인천": ["연수구", "남동구"],
+    "강원": ["춘천시", "원주시", "강릉시"],
+    "충청": ["천안시", "청주시", "대전광역시"],
+    "전라": ["전주시", "광주광역시", "여수시"],
+    "경상": ["부산광역시", "대구광역시", "울산광역시", "창원시"],
+    "제주": ["제주시", "서귀포시"]
+};
+
 const courses = [
     {
         name: "반포 한강공원",
+        largeRegion: "서울",
+        smallRegion: "서초구",
         location: "서초구 반포동",
         distance: "약 5km",
         difficulty: "쉬움 (평지)",
@@ -9,6 +22,8 @@ const courses = [
     },
     {
         name: "남산 둘레길",
+        largeRegion: "서울",
+        smallRegion: "중구",
         location: "중구 회현동/예장동",
         distance: "약 7.1km (둘레길 기준)",
         difficulty: "보통 (언덕 있음)",
@@ -17,6 +32,8 @@ const courses = [
     },
     {
         name: "서울숲 한 바퀴",
+        largeRegion: "서울",
+        smallRegion: "성동구",
         location: "성동구 성수동",
         distance: "약 3.5km",
         difficulty: "쉬움 (평지)",
@@ -25,6 +42,8 @@ const courses = [
     },
     {
         name: "여의도 한강공원",
+        largeRegion: "서울",
+        smallRegion: "영등포구",
         location: "영등포구 여의도동",
         distance: "약 8.4km (한 바퀴)",
         difficulty: "쉬움 (평지)",
@@ -32,23 +51,39 @@ const courses = [
         features: ["시티 뷰", "넓은 트로", "평지", "바람 주의"]
     },
     {
-        name: "석촌호수 둘레길",
-        location: "송파구 잠실동",
-        distance: "약 2.5km",
+        name: "수원 광교호수공원",
+        largeRegion: "경기",
+        smallRegion: "수원시",
+        location: "수원시 영통구",
+        distance: "약 3km",
         difficulty: "쉬움 (평지)",
-        description: "완벽하게 정비된 우레탄 트랙을 따라 호수와 롯데월드를 보며 달리는 코스입니다. 야간에도 매우 밝습니다.",
-        features: ["호수 뷰", "우레탄 트랙", "매우 밝음", "잠실역 인근"]
+        description: "아름다운 호수 전망을 보며 달릴 수 있는 코스로, 밤에는 화려한 야경이 일품입니다.",
+        features: ["호수 뷰", "야경", "평지", "잘 정비된 길"]
     },
     {
-        name: "북서울 꿈의숲",
-        location: "강북구 번동",
-        distance: "약 2km (공원 내)",
+        name: "부산 해운대 동백섬",
+        largeRegion: "경상",
+        smallRegion: "부산광역시",
+        location: "부산 해운대구",
+        distance: "약 1km (순환)",
+        difficulty: "쉬움 (평지)",
+        description: "바다 냄새를 맡으며 달릴 수 있는 코스로, 광안대교와 해운대 바다를 한눈에 볼 수 있습니다.",
+        features: ["오션 뷰", "관광지", "평지", "포토존"]
+    },
+    {
+        name: "제주 사라봉/별도봉",
+        largeRegion: "제주",
+        smallRegion: "제주시",
+        location: "제주시 건입동",
+        distance: "약 3km",
         difficulty: "보통 (경사 있음)",
-        description: "강북 지역의 넓은 공원 코스로, 적당한 경사와 넓은 광장이 섞여 있어 지루하지 않은 러닝이 가능합니다.",
-        features: ["공원 코스", "경사 포함", "전망대", "가족 단위 많음"]
+        description: "제주항이 내려다보이는 해안 절벽 길을 따라 달리는 환상적인 코스입니다.",
+        features: ["해안 절벽", "일몰 명소", "숲길", "도민 추천"]
     }
 ];
 
+const largeRegionSelect = document.getElementById('large-region');
+const smallRegionSelect = document.getElementById('small-region');
 const recommendBtn = document.getElementById('recommend-btn');
 const courseResult = document.getElementById('course-result');
 const themeToggle = document.getElementById('theme-toggle');
@@ -72,10 +107,47 @@ themeToggle.addEventListener('click', () => {
     localStorage.setItem('theme', theme);
 });
 
+// Cascading Select Logic
+largeRegionSelect.addEventListener('change', (e) => {
+    const selectedLarge = e.target.value;
+    smallRegionSelect.innerHTML = '<option value="">상세 지역 선택</option>';
+    
+    if (selectedLarge && regions[selectedLarge]) {
+        regions[selectedLarge].forEach(small => {
+            const option = document.createElement('option');
+            option.value = small;
+            option.textContent = small;
+            smallRegionSelect.appendChild(option);
+        });
+        smallRegionSelect.disabled = false;
+    } else {
+        smallRegionSelect.disabled = true;
+    }
+});
+
 // Recommendation logic
 recommendBtn.addEventListener('click', () => {
-    const randomIndex = Math.floor(Math.random() * courses.length);
-    const course = courses[randomIndex];
+    const large = largeRegionSelect.value;
+    const small = smallRegionSelect.value;
+    
+    if (!large) {
+        alert("지역을 먼저 선택해주세요!");
+        return;
+    }
+
+    let filteredCourses = courses.filter(c => c.largeRegion === large);
+    
+    if (small) {
+        filteredCourses = filteredCourses.filter(c => c.smallRegion === small);
+    }
+
+    if (filteredCourses.length === 0) {
+        alert("해당 지역에 등록된 코스가 아직 없습니다. 제보를 통해 알려주세요!");
+        return;
+    }
+
+    const randomIndex = Math.floor(Math.random() * filteredCourses.length);
+    const course = filteredCourses[randomIndex];
     
     displayCourse(course);
 });

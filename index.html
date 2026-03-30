@@ -13,7 +13,25 @@
   <div class="container main-section">
     <button id="theme-toggle" class="theme-btn">🌙</button>
     <h1>오늘 저녁 어디 뛰지 🏃‍♂️</h1>
-    <p>고민하지 말고 버튼을 눌러보세요!</p>
+    <p>지역을 선택하고 코스를 추천받으세요!</p>
+    
+    <div class="region-select-container">
+        <select id="large-region">
+            <option value="">지역 선택(시/도)</option>
+            <option value="서울">서울특별시</option>
+            <option value="경기">경기도</option>
+            <option value="인천">인천광역시</option>
+            <option value="강원">강원도</option>
+            <option value="충청">충청도</option>
+            <option value="전라">전라도</option>
+            <option value="경상">경상도</option>
+            <option value="제주">제주도</option>
+        </select>
+        <select id="small-region" disabled>
+            <option value="">상세 지역 선택</option>
+        </select>
+    </div>
+
     <div id="course-result" class="course-container" style="display: none;">
       <div class="course-card">
         <h2 id="course-name">코스 이름</h2>
