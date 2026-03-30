@@ -331,11 +331,18 @@ if (recommendBtn) {
         const small = smallRegionSelect.value;
         
         let filteredCourses = courses;
+        let isFallback = false;
 
         if (large) {
             filteredCourses = filteredCourses.filter(c => c.largeRegion === large);
             if (small && small !== "") {
-                filteredCourses = filteredCourses.filter(c => c.smallRegion === small);
+                const specificCourses = filteredCourses.filter(c => c.smallRegion === small);
+                if (specificCourses.length === 0) {
+                    isFallback = true;
+                    // Keep the large region filtered courses for fallback
+                } else {
+                    filteredCourses = specificCourses;
+                }
             }
         }
 
@@ -353,16 +360,30 @@ if (recommendBtn) {
         recommendBtn.disabled = true;
 
         setTimeout(() => {
-            displayCourse(course);
+            displayCourse(course, isFallback);
             recommendBtn.textContent = "코스 추천받기";
             recommendBtn.disabled = false;
         }, 600);
     });
 }
 
-function displayCourse(course) {
+function displayCourse(course, isFallback) {
     const nameEl = document.getElementById('course-name');
     if (!nameEl) return;
+
+    // Reset previous fallback message if any
+    const existingMsg = document.getElementById('fallback-msg');
+    if (existingMsg) existingMsg.remove();
+
+    if (isFallback) {
+        const msg = document.createElement('p');
+        msg.id = 'fallback-msg';
+        msg.style.color = 'var(--accent-color)';
+        msg.style.fontWeight = 'bold';
+        msg.style.marginBottom = '1rem';
+        msg.textContent = "⚠️ 선택하신 상세 지역에 아직 코스가 없네요. 대신 주변의 멋진 코스를 추천해 드릴게요!";
+        courseResult.prepend(msg);
+    }
 
     nameEl.textContent = course.name;
     document.getElementById('course-location').textContent = course.location;
