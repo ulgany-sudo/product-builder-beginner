@@ -1,15 +1,16 @@
 const regions = {
-    "서울": ["강남구", "서초구", "송파구", "마포구", "성동구", "영등포구", "종로구", "중구", "강북구", "광진구", "강서구"],
-    "경기": ["수원시", "성남시", "고양시", "용인시", "안양시", "파주시", "과천시"],
-    "인천": ["연수구", "남동구", "중구"],
-    "강원": ["춘천시", "원주시", "강릉시", "속초시"],
-    "충청": ["천안시", "청주시", "대전광역시", "세종특별자치시"],
-    "전라": ["전주시", "광주광역시", "여수시", "목포시"],
-    "경상": ["부산광역시", "대구광역시", "울산광역시", "창원시", "포항시"],
+    "서울": ["강남구", "서초구", "송파구", "마포구", "성동구", "영등포구", "종로구", "중구", "강북구", "광진구", "강서구", "양천구", "노원구"],
+    "경기": ["수원시", "성남시", "고양시", "용인시", "안양시", "파주시", "과천시", "부천시", "광명시", "남양주시"],
+    "인천": ["연수구", "남동구", "중구", "부평구"],
+    "강원": ["춘천시", "원주시", "강릉시", "속초시", "양양군"],
+    "충청": ["천안시", "청주시", "대전광역시", "세종특별자치시", "공주시"],
+    "전라": ["전주시", "광주광역시", "여수시", "목포시", "순천시"],
+    "경상": ["부산광역시", "대구광역시", "울산광역시", "창원시", "포항시", "경주시", "김해시"],
     "제주": ["제주시", "서귀포시"]
 };
 
 const courses = [
+    // --- SEOUL ---
     {
         name: "반포 한강공원 (달빛무지개 코스)",
         largeRegion: "서울",
@@ -61,15 +62,27 @@ const courses = [
         features: ["시티 뷰", "넓은 트로", "평지", "바람 주의", "벚꽃 명소"]
     },
     {
-        name: "월드컵공원 평화의공원 코스",
+        name: "양천구 안양천 수변로",
         largeRegion: "서울",
-        smallRegion: "마포구",
-        location: "마포구 상암동",
-        distance: "약 3km",
+        smallRegion: "양천구",
+        location: "양천구 신정동",
+        distance: "약 6km",
         difficulty: "쉬움 (평지)",
-        description: "평화의 광장을 중심으로 난지 연못을 한 바퀴 도는 코스입니다. 광활한 하늘공원과 노을공원을 옆에 두고 상쾌한 바람을 맞으며 달릴 수 있습니다.",
-        features: ["평지", "자연 친화", "주차 용이", "초보 추천"]
+        description: "안양천을 따라 조성된 곧은 길입니다. 계절마다 다른 꽃들이 피어 눈이 즐겁고, 바닥이 평탄하여 페이스 유지 연습에 매우 좋습니다.",
+        features: ["꽃길", "평지", "직선 코스", "자연 친화"]
     },
+    {
+        name: "노원구 당현천 코스",
+        largeRegion: "서울",
+        smallRegion: "노원구",
+        location: "노원구 상계동",
+        distance: "약 3.2km",
+        difficulty: "쉬움 (평지)",
+        description: "중랑천으로 이어지는 당현천을 따라 달리는 코스입니다. 지역 주민들의 사랑을 받는 산책로로, 야간 조명 설치가 잘 되어 있어 밤 러닝에 최적입니다.",
+        features: ["야간 러닝", "평지", "지역 명소", "수변로"]
+    },
+
+    // --- GYEONGGI ---
     {
         name: "수원 광교호수공원",
         largeRegion: "경기",
@@ -91,25 +104,27 @@ const courses = [
         features: ["호수 뷰", "완벽한 분리", "평지", "접근성 우수"]
     },
     {
-        name: "분당 중앙공원 코스",
+        name: "부천 상동호수공원",
         largeRegion: "경기",
-        smallRegion: "성남시",
-        location: "성남시 분당구",
+        smallRegion: "부천시",
+        location: "부천시 상동",
         distance: "약 2.5km",
         difficulty: "쉬움 (평지)",
-        description: "분당천을 끼고 도는 숲길과 광장이 어우러진 코스입니다. 고즈넉한 한옥과 정자가 있어 전통적인 분위기 속에서 이색적인 러닝을 즐길 수 있습니다.",
-        features: ["전통미", "숲길", "평지", "산책로 정비"]
+        description: "아담하지만 알찬 호수공원 코스입니다. 사계절 꽃이 만발하며, 도심 한복판에 위치하여 퇴근 후 가볍게 뛰기에 아주 좋습니다.",
+        features: ["도심 속 쉼터", "평지", "꽃길", "가벼운 러닝"]
     },
     {
-        name: "안양천 수변로 (안양-광명 코스)",
+        name: "남양주 다산생태공원 코스",
         largeRegion: "경기",
-        smallRegion: "안양시",
-        location: "안양시 만안구/동안구",
-        distance: "약 10km 이상 (선택 가능)",
+        smallRegion: "남양주시",
+        location: "남양주시 조안면",
+        distance: "약 4km",
         difficulty: "쉬움 (평지)",
-        description: "안양천을 따라 곧게 뻗은 자전거 도로 옆 보행자 전용도로입니다. 계절마다 피는 야생화와 시원한 물줄기를 보며 안정적인 페이스로 달리기 좋습니다.",
-        features: ["평지", "직선 코스", "수변로", "자연 친화"]
+        description: "팔당호의 풍경을 감상하며 자연 속에서 힐링할 수 있는 코스입니다. 공기가 매우 맑고 길이 조용하여 명상하듯 달리기 좋습니다.",
+        features: ["자연 힐링", "팔당호 뷰", "평지", "조용한 코스"]
     },
+
+    // --- INCHEON ---
     {
         name: "송도 센트럴파크 코스",
         largeRegion: "인천",
@@ -131,6 +146,18 @@ const courses = [
         features: ["가로수길", "벚꽃 명소", "넓은 길", "크루 추천"]
     },
     {
+        name: "인천 부평 공원 코스",
+        largeRegion: "인천",
+        smallRegion: "부평구",
+        location: "인천 부평구 부평동",
+        distance: "약 2km",
+        difficulty: "쉬움 (평지)",
+        description: "군 부대가 이전한 부지에 조성된 넓은 평지 공원입니다. 바닥이 우레탄으로 잘 관리되어 있어 관절 부담 없이 부드럽게 달릴 수 있습니다.",
+        features: ["우레탄 트랙", "평지", "접근성 좋음", "가족 공원"]
+    },
+
+    // --- GANGWON ---
+    {
         name: "강릉 경포호 산책로",
         largeRegion: "강원",
         smallRegion: "강릉시",
@@ -141,25 +168,17 @@ const courses = [
         features: ["호수+바다", "평지", "관광 명소", "일출 추천"]
     },
     {
-        name: "춘천 공지천 수변 코스",
+        name: "양양 낙산 해안로",
         largeRegion: "강원",
-        smallRegion: "춘천시",
-        location: "강원 춘천시",
+        smallRegion: "양양군",
+        location: "강원 양양군 강현면",
         distance: "약 5km",
         difficulty: "쉬움 (평지)",
-        description: "의암호의 물안개와 함께 달리는 춘천의 대표 코스입니다. 공지천 조각공원에서 시작해 호반 산책로를 따라 이어지는 길은 낭만적인 분위기를 선사합니다.",
-        features: ["호수 뷰", "물안개", "평지", "자연 명소"]
+        description: "동해안의 시원한 파도 소리를 배경음악 삼아 달리는 해안 코스입니다. 탁 트인 바다 전망이 러너의 피로를 잊게 해줍니다.",
+        features: ["오션 뷰", "파도 소리", "평지", "해안 도로"]
     },
-    {
-        name: "속초 영랑호 둘레길",
-        largeRegion: "강원",
-        smallRegion: "속초시",
-        location: "강원 속초시 영랑동",
-        distance: "약 7.8km",
-        difficulty: "쉬움 (평지)",
-        description: "설악산과 호수가 어우러진 비경을 감상하며 달릴 수 있는 코스입니다. 특히 범바위 부근의 절경은 러너들 사이에서 사진 명소로 유명합니다.",
-        features: ["설악산 뷰", "호수 뷰", "평지", "포토존"]
-    },
+
+    // --- CHUNGCHEONG ---
     {
         name: "대전 갑천 수변로",
         largeRegion: "충청",
@@ -171,35 +190,17 @@ const courses = [
         features: ["야경", "평지", "자전거 도로 분리", "한밭수목원 인근"]
     },
     {
-        name: "세종 호수공원 순환 코스",
+        name: "공주 금강 신관공원 코스",
         largeRegion: "충청",
-        smallRegion: "세종특별자치시",
-        location: "세종시 연기면",
-        distance: "약 4.8km",
+        smallRegion: "공주시",
+        location: "충남 공주시 신관동",
+        distance: "약 3.5km",
         difficulty: "쉬움 (평지)",
-        description: "국내 최대 인공호수공원으로, 수상무대섬과 다양한 테마 정원을 지나며 달립니다. 장애물 없는 평탄한 우레탄 길이 길게 이어져 페이스 측정에 최적입니다.",
-        features: ["평지", "우레탄 트랙", "시티 뷰", "최신 시설"]
+        description: "세계문화유산인 공산성을 바라보며 금강변을 달리는 역사와 자연이 어우러진 코스입니다. 강바람이 시원하여 여름철 저녁 러닝에 최고입니다.",
+        features: ["역사 뷰", "금강 뷰", "평지", "여름 추천"]
     },
-    {
-        name: "천안 독립기념관 겨레의 탑 코스",
-        largeRegion: "충청",
-        smallRegion: "천안시",
-        location: "충남 천안시 목천읍",
-        distance: "약 3km (경내 순환)",
-        difficulty: "보통 (경사 있음)",
-        description: "웅장한 겨레의 집과 독립기념관 주변의 수려한 자연경관을 따라 달리는 코스입니다. 가을철 단풍길은 전국에서도 손꼽히는 아름다운 러닝 코스입니다.",
-        features: ["역사적 장소", "단풍 명소", "숲길", "힐링"]
-    },
-    {
-        name: "광주 중외공원 & 비엔날레 코스",
-        largeRegion: "전라",
-        smallRegion: "광주광역시",
-        location: "광주 북구 용봉동",
-        distance: "약 2.5km",
-        difficulty: "보통 (언덕 포함)",
-        description: "예술과 자연이 공존하는 공간에서 즐기는 러닝입니다. 중외공원 놀이동산과 미술관 주변 산책로는 경사가 있어 짧지만 강한 훈련이 가능합니다.",
-        features: ["문화 예술", "언덕 훈련", "숲길", "산책로"]
-    },
+
+    // --- JEONLA ---
     {
         name: "전주 덕진공원 호반 코스",
         largeRegion: "전라",
@@ -211,15 +212,17 @@ const courses = [
         features: ["연꽃 명소", "전통미", "평지", "야간 조명"]
     },
     {
-        name: "여수 오동도 해안 코스",
+        name: "순천만 국가정원 외곽 코스",
         largeRegion: "전라",
-        smallRegion: "여수시",
-        location: "전남 여수시 수정동",
-        distance: "약 3km (방파제 포함)",
-        difficulty: "보통 (데크 계단 포함)",
-        description: "여수 밤바다의 정취를 온몸으로 느끼며 달리는 코스입니다. 방파제 길을 지나 오동도 숲속 데크 길을 달리면 바다 한가운데에 있는 듯한 기분을 줍니다.",
-        features: ["오션 뷰", "동백나무 숲", "야경", "관광 명소"]
+        smallRegion: "순천시",
+        location: "전남 순천시 남제동",
+        distance: "약 5.5km",
+        difficulty: "쉬움 (평지)",
+        description: "세계 5대 연안 습지인 순천만과 국가정원의 아름다움을 담은 코스입니다. 자연 생태계가 잘 보존되어 있어 신선한 공기를 마시며 달릴 수 있습니다.",
+        features: ["생태 관광", "청정 공기", "평지", "국가정원"]
     },
+
+    // --- GYEONGSANG ---
     {
         name: "부산 해운대 동백섬 순환로",
         largeRegion: "경상",
@@ -231,35 +234,27 @@ const courses = [
         features: ["오션 뷰", "관광지", "평지", "포토존", "파도 소리"]
     },
     {
-        name: "대구 신천 수변 코스",
+        name: "경주 보문호반 산책길",
         largeRegion: "경상",
-        smallRegion: "대구광역시",
-        location: "대구 중구/남구/북구",
-        distance: "약 10km 이상 (선택 가능)",
-        difficulty: "쉬움 (평지)",
-        description: "대구의 젖줄인 신천을 따라 조성된 수변로입니다. 대구 도심을 관통하며 길게 뻗어 있어 자신의 실력에 맞춰 거리를 조절하기 매우 좋습니다.",
-        features: ["직선 코스", "평지", "접근성 최고", "시민 공원"]
+        smallRegion: "경주시",
+        location: "경북 경주시 신평동",
+        distance: "약 8km (순환)",
+        difficulty: "보통 (거리 있음)",
+        description: "천년고도 경주의 정취를 느끼며 보문호수를 한 바퀴 도는 코스입니다. 벚꽃 시즌에는 전국에서 가장 아름다운 꽃길 러닝을 즐길 수 있습니다.",
+        features: ["호수 뷰", "벚꽃 명소", "긴 거리", "관광 명소"]
     },
     {
-        name: "울산 태화강 국가정원 코스",
+        name: "김해 해반천 수변길",
         largeRegion: "경상",
-        smallRegion: "울산광역시",
-        location: "울산 중구 태화동",
-        distance: "약 4km (순환)",
+        smallRegion: "김해시",
+        location: "경남 김해시 내동",
+        distance: "약 6.5km",
         difficulty: "쉬움 (평지)",
-        description: "십리대숲의 울창한 대나무 사이로 부는 바람을 맞으며 달리는 환상적인 코스입니다. 국가정원으로 지정될 만큼 관리가 뛰어나며 지면 상태가 매우 훌륭합니다.",
-        features: ["대나무 숲", "국가정원", "평지", "힐링 코스"]
+        description: "김해 시내를 관통하는 해반천을 따라 달리는 코스입니다. 가야 시대의 유적지들을 스치듯 지나며 달리는 역사적인 경험을 제공합니다.",
+        features: ["역사 탐방", "수변로", "평지", "시민 공원"]
     },
-    {
-        name: "포항 영일대 해안로",
-        largeRegion: "경상",
-        smallRegion: "포항시",
-        location: "경북 포항시 북구",
-        distance: "약 2.5km",
-        difficulty: "쉬움 (평지)",
-        description: "동해안의 탁 트인 바다와 포스코의 화려한 조명을 배경으로 달리는 코스입니다. 모래사장 옆으로 난 평탄한 보도를 따라 달리면 가슴이 뻥 뚫리는 기분을 느낄 수 있습니다.",
-        features: ["오션 뷰", "포스코 야경", "평지", "바닷바람"]
-    },
+
+    // --- JEJU ---
     {
         name: "제주 사라봉/별도봉 장수산책로",
         largeRegion: "제주",
@@ -314,7 +309,7 @@ const courseResult = document.getElementById('course-result');
 if (largeRegionSelect) {
     largeRegionSelect.addEventListener('change', (e) => {
         const selectedLarge = e.target.value;
-        smallRegionSelect.innerHTML = '<option value="">상세 지역 선택</option>';
+        smallRegionSelect.innerHTML = '<option value="">전체 소지역</option>';
         
         if (selectedLarge && regions[selectedLarge]) {
             regions[selectedLarge].forEach(small => {
@@ -335,26 +330,33 @@ if (recommendBtn) {
         const large = largeRegionSelect.value;
         const small = smallRegionSelect.value;
         
-        if (!large) {
-            alert("지역을 먼저 선택해주세요!");
-            return;
-        }
+        let filteredCourses = courses;
 
-        let filteredCourses = courses.filter(c => c.largeRegion === large);
-        
-        if (small) {
-            filteredCourses = filteredCourses.filter(c => c.smallRegion === small);
+        if (large) {
+            filteredCourses = filteredCourses.filter(c => c.largeRegion === large);
+            if (small && small !== "") {
+                filteredCourses = filteredCourses.filter(c => c.smallRegion === small);
+            }
         }
 
         if (filteredCourses.length === 0) {
-            alert("해당 지역에 등록된 코스가 아직 없습니다. 제보를 통해 알려주세요!");
+            alert("해당 지역에 등록된 코스가 아직 없습니다. 다른 지역을 선택하거나 전체에서 골라보세요!");
             return;
         }
 
+        // Randomly pick one from the filtered list
         const randomIndex = Math.floor(Math.random() * filteredCourses.length);
         const course = filteredCourses[randomIndex];
         
-        displayCourse(course);
+        // Simple "Loading" effect
+        recommendBtn.textContent = "추천 코스 찾는 중...";
+        recommendBtn.disabled = true;
+
+        setTimeout(() => {
+            displayCourse(course);
+            recommendBtn.textContent = "코스 추천받기";
+            recommendBtn.disabled = false;
+        }, 600);
     });
 }
 
@@ -378,5 +380,9 @@ function displayCourse(course) {
     });
     
     courseResult.style.display = 'block';
+    courseResult.classList.remove('fade-in');
+    void courseResult.offsetWidth; // Trigger reflow
+    courseResult.classList.add('fade-in');
+    
     courseResult.scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
