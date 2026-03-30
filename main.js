@@ -122,78 +122,87 @@ const courses = [
     }
 ];
 
+// Theme logic
+const themeToggle = document.getElementById('theme-toggle');
+const currentTheme = localStorage.getItem('theme');
+
+if (currentTheme === 'dark') {
+    document.body.classList.add('dark-mode');
+    if (themeToggle) themeToggle.textContent = '☀️';
+}
+
+if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+        document.body.classList.toggle('dark-mode');
+        let theme = 'light';
+        if (document.body.classList.contains('dark-mode')) {
+            theme = 'dark';
+            themeToggle.textContent = '☀️';
+        } else {
+            themeToggle.textContent = '🌙';
+        }
+        localStorage.setItem('theme', theme);
+    });
+}
+
+// Course Recommendation Logic (Only for recommend.html)
 const largeRegionSelect = document.getElementById('large-region');
 const smallRegionSelect = document.getElementById('small-region');
 const recommendBtn = document.getElementById('recommend-btn');
 const courseResult = document.getElementById('course-result');
-const themeToggle = document.getElementById('theme-toggle');
 
-// Theme logic
-const currentTheme = localStorage.getItem('theme');
-if (currentTheme === 'dark') {
-    document.body.classList.add('dark-mode');
-    themeToggle.textContent = '☀️';
+if (largeRegionSelect) {
+    largeRegionSelect.addEventListener('change', (e) => {
+        const selectedLarge = e.target.value;
+        smallRegionSelect.innerHTML = '<option value="">상세 지역 선택</option>';
+        
+        if (selectedLarge && regions[selectedLarge]) {
+            regions[selectedLarge].forEach(small => {
+                const option = document.createElement('option');
+                option.value = small;
+                option.textContent = small;
+                smallRegionSelect.appendChild(option);
+            });
+            smallRegionSelect.disabled = false;
+        } else {
+            smallRegionSelect.disabled = true;
+        }
+    });
 }
 
-themeToggle.addEventListener('click', () => {
-    document.body.classList.toggle('dark-mode');
-    let theme = 'light';
-    if (document.body.classList.contains('dark-mode')) {
-        theme = 'dark';
-        themeToggle.textContent = '☀️';
-    } else {
-        themeToggle.textContent = '🌙';
-    }
-    localStorage.setItem('theme', theme);
-});
+if (recommendBtn) {
+    recommendBtn.addEventListener('click', () => {
+        const large = largeRegionSelect.value;
+        const small = smallRegionSelect.value;
+        
+        if (!large) {
+            alert("지역을 먼저 선택해주세요!");
+            return;
+        }
 
-// Cascading Select Logic
-largeRegionSelect.addEventListener('change', (e) => {
-    const selectedLarge = e.target.value;
-    smallRegionSelect.innerHTML = '<option value="">상세 지역 선택</option>';
-    
-    if (selectedLarge && regions[selectedLarge]) {
-        regions[selectedLarge].forEach(small => {
-            const option = document.createElement('option');
-            option.value = small;
-            option.textContent = small;
-            smallRegionSelect.appendChild(option);
-        });
-        smallRegionSelect.disabled = false;
-    } else {
-        smallRegionSelect.disabled = true;
-    }
-});
+        let filteredCourses = courses.filter(c => c.largeRegion === large);
+        
+        if (small) {
+            filteredCourses = filteredCourses.filter(c => c.smallRegion === small);
+        }
 
-// Recommendation logic
-recommendBtn.addEventListener('click', () => {
-    const large = largeRegionSelect.value;
-    const small = smallRegionSelect.value;
-    
-    if (!large) {
-        alert("지역을 먼저 선택해주세요!");
-        return;
-    }
+        if (filteredCourses.length === 0) {
+            alert("해당 지역에 등록된 코스가 아직 없습니다. 제보를 통해 알려주세요!");
+            return;
+        }
 
-    let filteredCourses = courses.filter(c => c.largeRegion === large);
-    
-    if (small) {
-        filteredCourses = filteredCourses.filter(c => c.smallRegion === small);
-    }
-
-    if (filteredCourses.length === 0) {
-        alert("해당 지역에 등록된 코스가 아직 없습니다. 제보를 통해 알려주세요!");
-        return;
-    }
-
-    const randomIndex = Math.floor(Math.random() * filteredCourses.length);
-    const course = filteredCourses[randomIndex];
-    
-    displayCourse(course);
-});
+        const randomIndex = Math.floor(Math.random() * filteredCourses.length);
+        const course = filteredCourses[randomIndex];
+        
+        displayCourse(course);
+    });
+}
 
 function displayCourse(course) {
-    document.getElementById('course-name').textContent = course.name;
+    const nameEl = document.getElementById('course-name');
+    if (!nameEl) return;
+
+    nameEl.textContent = course.name;
     document.getElementById('course-location').textContent = course.location;
     document.getElementById('course-distance').textContent = course.distance;
     document.getElementById('course-difficulty').textContent = course.difficulty;
@@ -209,24 +218,5 @@ function displayCourse(course) {
     });
     
     courseResult.style.display = 'block';
-    
-    // Smooth scroll to result
     courseResult.scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
-
-// Mobile Menu Smooth Scroll Fix (for navbar links)
-document.querySelectorAll('.nav-links a').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        const targetId = this.getAttribute('href');
-        if (targetId === '#') return;
-        
-        const targetElement = document.querySelector(targetId);
-        if (targetElement) {
-            window.scrollTo({
-                top: targetElement.offsetTop - 80, // Navbar height offset
-                behavior: 'smooth'
-            });
-        }
-    });
-});
